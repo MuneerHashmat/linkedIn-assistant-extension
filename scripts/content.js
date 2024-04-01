@@ -6,24 +6,20 @@ savedPostsLink.classList.add("global-nav__primary-item");
 
 const SavePostImagePath = chrome.runtime.getURL("images/diskette.png");
 savedPostsLink.innerHTML = `<a class="app-aware-link global-nav__primary-link global-nav__primary-link--inactive" 
-                            target="_blank" href="https://www.linkedin.com/my-items/saved-posts/" id="anchor-tag">
-                            <div class="ivm-image-view-model global-nav__icon-ivm">
-                            <div class="ivm-view-attr__img-wrapper display-flex">
-                            <li-icon aria-hidden="true" type="bookmark-fill" class="ivm-view-attr__icon" size="large">
-                            <img src="${SavePostImagePath}" alt="saved">
-                            </li-icon>
-                            </div>
-                            </div>
-                            <span class="t-12 break-words block t-black--light t-normal global-nav__primary-link-text">Saved Posts</span>
-                            </a>
-                           `
+target="_blank" href="https://www.linkedin.com/my-items/saved-posts/" id="anchor-tag">
+<div class="ivm-image-view-model global-nav__icon-ivm">
+<div class="ivm-view-attr__img-wrapper display-flex">
+<li-icon aria-hidden="true" type="bookmark-fill" class="ivm-view-attr__icon" size="large">
+<img src="${SavePostImagePath}" alt="saved">
+</li-icon>
+</div>
+</div>
+<span class="t-12 break-words block t-black--light t-normal global-nav__primary-link-text">Saved Posts</span>
+</a> 
+`
+
+
 linksContainer.appendChild(savedPostsLink);
-
-
-
-
-
-
 
 //Adding voice command button to the page
 let body = document.querySelector("body");
@@ -72,3 +68,35 @@ speakButton.addEventListener("click", () => {
 })
 
 body.appendChild(speakButton);
+
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action === "visible") {
+        savedPostsLink.style.display = "block";
+    }
+    else if (message.action === "invisible") {
+        savedPostsLink.style.display = "none";
+    }
+
+    else if (message.action === "visible2") {
+        speakButton.style.display = "flex";
+    }
+    else if (message.action === "invisible2") {
+        speakButton.style.display = "none";
+    }
+});
+
+
+savedPostsLink.style.display = "none";
+speakButton.style.display = "none";
+chrome.storage.sync.get("buttonState1", function (data) {
+    if (data.buttonState1) {
+        savedPostsLink.style.display = "block";
+    }
+});
+
+chrome.storage.sync.get("buttonState2", function (data) {
+    if (data.buttonState2) {
+        speakButton.style.display = "flex";
+    }
+});

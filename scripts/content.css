@@ -36,6 +36,10 @@ button#speak-button[listening] {
     animation-timing-function: linear;
 }
 
+.invisible {
+    display: none;
+}
+
 @keyframes ripple {
     0% {
         transform: scale(1);
