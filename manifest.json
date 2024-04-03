@@ -9,6 +9,9 @@
         "48": "images/linkedin.png",
         "128": "images/linkedin.png"
     },
+    "background": {
+        "service_worker": "background.js"
+    },
     "content_scripts": [
         {
             "js": [

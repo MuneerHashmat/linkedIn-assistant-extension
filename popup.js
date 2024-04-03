@@ -1,5 +1,15 @@
+let mainContainer = document.getElementById("main-container");
+let textContainer = document.getElementById("text-container");
 let showSaved = document.getElementById("show-saved");
 let showAudioInput = document.getElementById("show-audio-input");
+
+chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    const url = tabs[0].url;
+    if (!url.includes("https://www.linkedin.com")) {
+        mainContainer.style.display = "none";
+        textContainer.style.display = "block";
+    }
+});
 
 chrome.storage.sync.get("buttonState1", function (data) {
     if (data.buttonState1) {

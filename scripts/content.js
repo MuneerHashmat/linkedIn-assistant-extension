@@ -1,7 +1,8 @@
-//adding saved post link to navbar
-let linksContainer = document.querySelector("ul.global-nav__primary-items");
+//creating 
+var linksContainer = null;
+var body = null;
 let savedPostsLink = document.createElement("li");
-
+let speakButton = document.createElement("button");
 savedPostsLink.classList.add("global-nav__primary-item");
 
 const SavePostImagePath = chrome.runtime.getURL("images/diskette.png");
@@ -19,17 +20,50 @@ target="_blank" href="https://www.linkedin.com/my-items/saved-posts/" id="anchor
 `
 
 
-linksContainer.appendChild(savedPostsLink);
+function run() {
+    linksContainer = document.querySelector("ul.global-nav__primary-items");
+    linksContainer.appendChild(savedPostsLink);
+    body = document.querySelector("body");
+    body.appendChild(speakButton);
+}
+
+try {
+    run();
+}
+catch (err) {
+    console.log(err);
+}
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.action === "visible") {
+        savedPostsLink.style.display = "block";
+    }
+    else if (message.action === "invisible") {
+        savedPostsLink.style.display = "none";
+    }
+
+    else if (message.action === "visible2") {
+        speakButton.style.display = "flex";
+    }
+    else if (message.action === "invisible2") {
+        speakButton.style.display = "none";
+    }
+    else if (message.action === "execute") {
+        run();
+    }
+});
+
+
 
 //Adding voice command button to the page
-let body = document.querySelector("body");
 
-let speakButton = document.createElement("button");
+
+
 speakButton.setAttribute("id", "speak-button");
 speakButton.classList.add("line");
 
 const micImagePath = chrome.runtime.getURL("images/mic.png");
-speakButton.innerHTML = ` <img src="${micImagePath}" alt="mic" width="30px" height="28px"></img>`
+speakButton.innerHTML = `<img src="${micImagePath}" alt="mic" width="30px" height="28px"></img>`;
 
 
 let speechRecognition = new webkitSpeechRecognition();
@@ -37,20 +71,35 @@ speechRecognition.continuous = true;
 speechRecognition.interimResults = true;
 speechRecognition.lang = "en-us";
 
-let anchorTag = document.getElementById("anchor-tag");
-let transcript = "";
+// let anchorTag = document.getElementById("anchor-tag");
 speechRecognition.onresult = (e) => {
     console.log(e);
-    transcript = "";
     let savedPostCommand = e.results[e.resultIndex][0].transcript;
     console.log(savedPostCommand);
-    if (savedPostCommand.trim().toLowerCase().includes("open saved posts")) {
-        anchorTag.click();
+    let text = savedPostCommand.trim().toLowerCase();
+    if (text.includes("open saved posts")) {
+        // anchorTag.click();
+        linksContainer.children[8].children[0].click();
         speakButton.click();
         return;
     }
-    for (let i = 0; i < e.results.length; ++i) {
-        transcript += e.results[i][0].transcript;
+    else if (text.includes("open home")) {
+        linksContainer.children[0].children[0].click();
+    }
+    else if (text.includes("open my network")) {
+        linksContainer.children[1].children[0].click();
+    }
+    else if (text.includes("open jobs")) {
+        linksContainer.children[2].children[0].click();
+    }
+    else if (text.includes("open messag")) {
+        linksContainer.children[3].children[0].click();
+    }
+    else if (text.includes("open notification")) {
+        linksContainer.children[4].children[0].click();
+    }
+    else if (text.includes("open notification")) {
+        linksContainer.children[5].children[0].click();
     }
 }
 
@@ -67,26 +116,19 @@ speakButton.addEventListener("click", () => {
     }
 })
 
-body.appendChild(speakButton);
 
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
-    if (message.action === "visible") {
-        savedPostsLink.style.display = "block";
-    }
-    else if (message.action === "invisible") {
-        savedPostsLink.style.display = "none";
-    }
-
-    else if (message.action === "visible2") {
-        speakButton.style.display = "flex";
-    }
-    else if (message.action === "invisible2") {
-        speakButton.style.display = "none";
-    }
-});
 
 
+
+
+//handling messages from popup.html
+
+
+
+
+
+//showing saved posts link and speak buttons based on the state of buttons in popup.html
 savedPostsLink.style.display = "none";
 speakButton.style.display = "none";
 chrome.storage.sync.get("buttonState1", function (data) {
