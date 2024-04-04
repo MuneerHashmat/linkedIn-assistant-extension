@@ -44,3 +44,5 @@ git clone https://github.com/MuneerHashmat/linkedIn-assistant-extension.git
 
 ## Screenshots
 
+### Popup when the current tab is not a linkedIn page
+![image](./images/screenshots/1.png)
