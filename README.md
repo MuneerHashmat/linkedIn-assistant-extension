@@ -46,3 +46,19 @@ git clone https://github.com/MuneerHashmat/linkedIn-assistant-extension.git
 
 ### Popup when the current tab is not a linkedIn page
 ![image](./images/screenshots/1.png)
+
+### Popup when the current tab is a linkedIn page and custom ui elements are hidden
+![image](./images/screenshots/2.png)
+
+### Popup when the current tab is a linkedIn page and custom ui elements are visible
+![image](./images/screenshots/4.jpg)
+
+### Saved posts link
+![image](./images/screenshots/3.png)
+
+### Chat bot, mic off and mic on icons
+![image](./images/screenshots/5.jpg)
+
+### Chatbot Popup
+![image](./images/screenshots/6.png)
+![image](./images/screenshots/7.png)
