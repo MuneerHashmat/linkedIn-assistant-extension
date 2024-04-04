@@ -62,3 +62,16 @@ git clone https://github.com/MuneerHashmat/linkedIn-assistant-extension.git
 ### Chatbot Popup
 ![image](./images/screenshots/6.png)
 ![image](./images/screenshots/7.png)
+
+
+## New things learned:
+
+- **Chrome extension development**: Through this project, I got hands-on experience in developing extensions from chrome. I learned in detail about the architectural of chrome extensions such as service workers, content scripts and popups.
+
+- **Chrome APIs**: In this project I learned about and leveraged chrome APIs for different purposes such as chrome.tabs for manipulating tabs, chrome.storage for storage and chrome.runtime for communication between different components of the extension.
+
+## Challenges faced
+
+- **Limited support for ES6 modules**: Due to limited support for ES6 modules in chrome extension content scripts, I faced difficulties in import and export functionalities.
+- **Library and API limitations**: I faced difficulty in using APIs and Javascript libraries due to usage limitations in chrome extensions. I had to manually download and add javascript library files.
+- **Difficulty in debugging**: The architecture of chrome extensions is completely different from normal web apps with different components running in different contexts of web browser and pages. That made finding and resolving bugs increasingly difficult.
