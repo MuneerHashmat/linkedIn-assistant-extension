@@ -42,5 +42,6 @@ git clone https://github.com/MuneerHashmat/linkedIn-assistant-extension.git
 
 8)  **Pin Extension**: If desired, you can pin the extension to the toolbar for easy access. Right-click on the extension icon and select "Pin."
 
-
+## Screenshots
+- Popup when on
 
