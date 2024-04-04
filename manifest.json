@@ -10,12 +10,14 @@
         "128": "images/linkedin.png"
     },
     "background": {
-        "service_worker": "background.js"
+        "service_worker": "background.js",
+        "type": "module"
     },
     "content_scripts": [
         {
             "js": [
-                "scripts/content.js"
+                "scripts/content.js",
+                "scripts/markdown.js"
             ],
             "css": [
                 "scripts/content.css"
