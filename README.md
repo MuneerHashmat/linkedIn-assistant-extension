@@ -11,6 +11,7 @@ This extension provides a convenient popup interface for managing three custom U
 - Voice Input Button: Tired of repetitive clicking? Utilize the voice input button to effortlessly navigate LinkedIn navbar using voice commands. Open specific navbar links with ease, allowing for a hands-free browsing experience.
 
 
+
 Benefits:
 - Utilize Gemini AI functionalities without leaving LinkedIn.
 - Navigate to saved posts with a single click.
