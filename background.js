@@ -1,15 +1,14 @@
-chrome.tabs.onCreated.addListener(async (tab) => {
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    if (
-      tabs[0].pendingUrl === "https://www.linkedin.com/my-items/saved-posts/"
-    ) {
-      const id = tabs[0].id;
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  console.log(tab.url);
+
+  if (changeInfo.status === "complete" && tab.url) {
+    if (tab.url.includes("https://www.linkedin.com")) {
       let message = { action: "execute" };
       setTimeout(() => {
-        chrome.tabs.sendMessage(tabs[0].id, message);
+        chrome.tabs.sendMessage(tabId, message);
       }, 4000);
     }
-  });
+  }
 });
 
 const apiKey = "AIzaSyAk540Dpw8zIrm-0lNvM1cR8dEMrueoysA";
