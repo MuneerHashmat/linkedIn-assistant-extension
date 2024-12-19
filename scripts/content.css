@@ -140,7 +140,7 @@ button#speak-button[listening] {
     z-index: 2000;
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 5px;
     width: 320px;
 }
 
@@ -156,6 +156,10 @@ button#speak-button[listening] {
     padding: 5px;
     border-radius: 5px;
     background-color: #ff8888;
+}
+
+#loader {
+    padding: 0px 5px;
 }
 
 .bot-text div * {
@@ -215,7 +219,7 @@ button#speak-button[listening] {
     background-color: rgb(244, 242, 238);
     border-radius: 10px;
     padding: 5px 10px;
-    outline: none !important;
+    outline: none;
     resize: none;
 }
 

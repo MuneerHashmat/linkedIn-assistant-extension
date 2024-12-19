@@ -1,50 +1,41 @@
 {
-    "manifest_version": 3,
-    "name": "LinkedIn Assistant",
-    "version": "1.0",
-    "description": "A chrome extension for better LinkedIn experience",
-    "icons": {
-        "16": "images/linkedin.png",
-        "32": "images/linkedin.png",
-        "48": "images/linkedin.png",
-        "128": "images/linkedin.png"
-    },
-    "background": {
-        "service_worker": "background.js",
-        "type": "module"
-    },
-    "content_scripts": [
-        {
-            "js": [
-                "scripts/content.js",
-                "scripts/markdown.js"
-            ],
-            "css": [
-                "scripts/content.css"
-            ],
-            "matches": [
-                "https://www.linkedin.com/*"
-            ]
-        }
-    ],
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "images/diskette.png",
-                "images/mic.png"
-            ],
-            "matches": [
-                "https://www.linkedin.com/*"
-            ]
-        }
-    ],
-    "permissions": [
-        "activeTab",
-        "tabs",
-        "scripting",
-        "storage"
-    ],
-    "action": {
-        "default_popup": "popup.html"
+  "manifest_version": 3,
+  "name": "LinkedIn Assistant",
+  "version": "1.0",
+  "description": "A chrome extension for better LinkedIn experience",
+  "icons": {
+    "16": "images/linkedin.png",
+    "32": "images/linkedin.png",
+    "48": "images/linkedin.png",
+    "128": "images/linkedin.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js", "scripts/markdown.js"],
+      "css": ["scripts/content.css"],
+      "matches": ["https://www.linkedin.com/*"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/diskette.png",
+        "images/mic.png",
+        "images/robot.png",
+        "images/close.png",
+        "images/account.png",
+        "images/message.png",
+        "images/ellipse.gif"
+      ],
+      "matches": ["https://www.linkedin.com/*"]
+    }
+  ],
+  "permissions": ["activeTab", "tabs", "scripting", "storage"],
+  "action": {
+    "default_popup": "popup.html"
+  }
 }
