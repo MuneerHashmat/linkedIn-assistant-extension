@@ -1,6 +1,8 @@
-# Chrome extension - LinkedIn Assistant
+<h1 align="center">🌟 LinkedIn Assistant Chrome Extension🌟</h1>
 
 ## A chrome extension for Enhanced LinkedIn Navigation and AI assistance
+
+![image](./images/screenshots/1.png)
 
 "Boost your productivity and streamline your LinkedIn experience with LinkedIn Assistant, a Chrome extension that equips you with powerful features directly within the LinkedIn interface.
 
