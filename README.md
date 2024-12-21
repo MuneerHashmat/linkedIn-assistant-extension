@@ -32,6 +32,12 @@ git clone https://github.com/MuneerHashmat/linkedIn-assistant-extension.git
 
 - _Optional_: Open images folder and delete screenshots folder from there
 
+2. **Include Gemini API Key**: On the root of the project create a new JavaScript file `config.js` and add the following code:
+
+```javascript
+export const API_KEY = "YOUR_GEMINI_API_KEY";
+```
+
 2. **Open chrome extensions**: Open chrome browser and navigate to chrome extensions. You can do it by by clicking on the three-dot menu icon in the top right corner, selecting extensions and then manage extensions.
 
 3. **Turn On Developer Mode**: In the Extensions page, enable Developer Mode by toggling the switch located in the top right corner of the page.

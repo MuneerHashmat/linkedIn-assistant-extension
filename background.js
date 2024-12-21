@@ -1,3 +1,6 @@
+import { GoogleGenerativeAI } from "./scripts/index.mjs";
+import { API_KEY } from "./config.js";
+
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   console.log(tab.url);
 
@@ -11,8 +14,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   }
 });
 
-const apiKey = "AIzaSyAk540Dpw8zIrm-0lNvM1cR8dEMrueoysA";
-import { GoogleGenerativeAI } from "./scripts/index.mjs";
+const apiKey = API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
 chrome.runtime.onMessage.addListener(async (message) => {
@@ -23,16 +25,20 @@ chrome.runtime.onMessage.addListener(async (message) => {
 });
 
 async function sendResponse(prompt) {
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
-  const result = await model.generateContent(prompt);
-  const response = await result.response;
-  const markdownText = response.text();
-  console.log(markdownText);
-  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    const id = tabs[0].id;
-    let message = { action: "textSent", data: markdownText };
-    setTimeout(() => {
-      chrome.tabs.sendMessage(tabs[0].id, message);
-    }, 3000);
-  });
+  try {
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const markdownText = response.text();
+    console.log(markdownText);
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      const id = tabs[0].id;
+      let message = { action: "textSent", data: markdownText };
+      setTimeout(() => {
+        chrome.tabs.sendMessage(tabs[0].id, message);
+      }, 3000);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }

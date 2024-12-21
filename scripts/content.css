@@ -227,11 +227,3 @@ button#speak-button[listening] {
     transform: scale(1.1);
 }
 
-.new_li{
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.new_li .new_text{
-    font-size: 12px;
-}

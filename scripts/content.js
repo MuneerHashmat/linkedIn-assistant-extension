@@ -3,7 +3,6 @@ var body = null;
 
 //creating saved posts link and speak button
 let savedPostsLink = document.createElement("li");
-let speakButton = document.createElement("button");
 savedPostsLink.classList.add("global-nav__primary-item");
 
 const SavePostImagePath = chrome.runtime.getURL("images/diskette.png");
@@ -64,6 +63,16 @@ typing.innerHTML = `
     <div id="loader"><img src="${loaderImgPath}" alt = "loader" height = "30px"></div>
 `;
 
+//creating speak button
+let speakButton = document.createElement("button");
+speakButton.setAttribute("id", "speak-button");
+speakButton.classList.add("line");
+
+const micImagePath = chrome.runtime.getURL("images/mic.png");
+speakButton.innerHTML = `
+<img src="${micImagePath}" alt = "mic" width = "30px" height = "28px">
+`;
+
 //function to append newly created ui elements to the page
 function run() {
   body = document.querySelector("body");
@@ -121,23 +130,14 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
   }
 });
 
-speakButton.setAttribute("id", "speak-button");
-speakButton.classList.add("line");
-
-const micImagePath = chrome.runtime.getURL("images/mic.png");
-speakButton.innerHTML = `
-<img src="${micImagePath}" alt = "mic" width = "30px" height = "28px">
-`;
-
 //speech to text
 let speechRecognition = new webkitSpeechRecognition();
 speechRecognition.continuous = true;
 speechRecognition.interimResults = true;
 speechRecognition.lang = "en-us";
 
-// let anchorTag = document.getElementById("anchor-tag");
 speechRecognition.onresult = (e) => {
-  console.log(e);
+  console.log(e.results);
   let savedPostCommand = e.results[e.resultIndex][0].transcript;
   console.log(savedPostCommand);
   let text = savedPostCommand.trim().toLowerCase();
